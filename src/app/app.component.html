@@ -1,20 +1,154 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+
+<div class="container">
+  <div style="text-align:center">
+    <h1>
+      {{ title }}
+    </h1>
+  </div>
+  <form novalidate (ngSubmit)="onSubmit(form.value)" [formGroup]="form">
+    
+    <div *ngFor="let prop of objectProps" class="form-group" >
+      
+      <div *ngIf="prop.group" [formGroupName]="prop.key" novalidate>
+        
+        <div *ngFor="let subProp of prop.elements" class="form-group">
+          <!-- {{subProp | json}} -->
+          
+          <label [attr.for]="subProp">{{subProp.label}}</label>
+
+          <div [ngSwitch]="subProp.type">
+              
+              <input *ngSwitchCase="'text'" 
+              [formControlName]="subProp.key"
+              [id]="subProp.key" [type]="subProp.type"
+              class="form-control">
+
+              <input *ngSwitchCase="'email'" 
+                  [formControlName]="subProp.key"
+                  [id]="subProp.key" [type]="subProp.type"
+                  class="form-control">
+                
+                <input *ngSwitchCase="'number'" 
+                  [formControlName]="subProp.key"
+                  [id]="subProp.key" [type]="subProp.type"
+                  class="form-control">
+                
+                <div *ngSwitchCase="'radio'" class="form-check-inline">
+                  <label *ngFor="let option of subProp.options" class="form-check-label">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      [name]="subProp.key"
+                      [formControlName]="subProp.key"
+                      [value]="option.value"> {{option.label}}
+                  </label>
+                </div>
+        
+                <div *ngSwitchCase="'select'">
+                  <select [formControlName]="subProp.key" class="form-control">
+                    <option *ngFor="let option of subProp.options" [value]="option.value">
+                      {{ option.label }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+        
+              <div class="error" *ngIf="form.get(prop.key).get(subProp.key).invalid && (form.get(prop.key).get(subProp.key).dirty || form.get(prop.key).get(subProp.key).touched)">
+                  <div *ngIf="form.get(prop.key).get(subProp.key).errors.required">
+                    <small class="text-muted">{{ subProp.label }} is required</small>
+                  </div>
+                  <div *ngIf="form.get(prop.key).get(subProp.key).errors.email">
+                    <small class="text-muted">{{ subProp.label }} required a email format</small>
+                  </div>
+                  <div *ngIf="form.get(prop.key).get(subProp.key).errors.min">
+                    <small class="text-muted">{{ subProp.label }} required as min value {{ subProp.validation.min }}</small>
+                  </div>
+                  <div *ngIf="form.get(prop.key).get(subProp.key).errors.max">
+                    <small class="text-muted">{{ subProp.label }} required as max value {{ subProp.validation.max }}</small>
+                  </div>
+                  <div *ngIf="form.get(prop.key).get(subProp.key).errors.minlength">
+                    <small class="text-muted">{{ subProp.label }} required {{ subProp.validation.minLength }} or more characters</small>
+                  </div>
+                  <div *ngIf="form.get(prop.key).get(subProp.key).errors.maxlength">
+                    <small class="text-muted">{{ subProp.label }} required no more {{ subProp.validation.maxLength }} characters</small>
+                  </div>
+              </div>
+              
+          </div>
+      </div>
+      
+      <div *ngIf="!prop.group">
+
+      
+      <label [attr.for]="prop">{{prop.label}}</label>
+
+      <div [ngSwitch]="prop.type">
+        
+        <input *ngSwitchCase="'text'" 
+          [formControlName]="prop.key"
+          [id]="prop.key" [type]="prop.type"
+          class="form-control">
+        
+        <input *ngSwitchCase="'email'" 
+          [formControlName]="prop.key"
+          [id]="prop.key" [type]="prop.type"
+          class="form-control">
+        
+        <input *ngSwitchCase="'number'" 
+          [formControlName]="prop.key"
+          [id]="prop.key" [type]="prop.type"
+          class="form-control">
+        
+        <div *ngSwitchCase="'radio'" class="form-check-inline">
+          <label *ngFor="let option of prop.options" class="form-check-label">
+            <input
+              class="form-check-input"
+              type="radio"
+              [name]="prop.key"
+              [formControlName]="prop.key"
+              [value]="option.value"> {{option.label}}
+          </label>
+        </div>
+
+        <div *ngSwitchCase="'select'">
+          <select [formControlName]="prop.key" class="form-control">
+            <option *ngFor="let option of prop.options" [value]="option.value">
+              {{ option.label }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="error" *ngIf="form.get(prop.key).invalid && (form.get(prop.key).dirty || form.get(prop.key).touched)">
+          <div *ngIf="form.get(prop.key).errors.required">
+            <small class="text-muted">{{ prop.label }} is required</small>
+          </div>
+          <div *ngIf="form.get(prop.key).errors.email">
+            <small class="text-muted">{{ prop.label }} required a email format</small>
+          </div>
+          <div *ngIf="form.get(prop.key).errors.min">
+            <small class="text-muted">{{ prop.label }} required as min value {{ prop.validation.min }}</small>
+          </div>
+          <div *ngIf="form.get(prop.key).errors.max">
+            <small class="text-muted">{{ prop.label }} required as max value {{ prop.validation.max }}</small>
+          </div>
+          <div *ngIf="form.get(prop.key).errors.minlength">
+            <small class="text-muted">{{ prop.label }} required {{ prop.validation.minLength }} or more characters</small>
+          </div>
+          <div *ngIf="form.get(prop.key).errors.maxlength">
+            <small class="text-muted">{{ prop.label }} required no more {{ prop.validation.maxLength }} characters</small>
+          </div>
+      </div>
+    </div>
+    </div>
+    <p>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </p>
+  </form>
+  <hr />
+  <strong>Form Value</strong>
+  <pre>{{ form.value | json }}</pre>
+  <strong>Form is valid:</strong> {{form.valid}}
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
 
