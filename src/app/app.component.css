@@ -5,8 +5,9 @@
 .container {
     width: 40%;
     padding: 20px;
+    border: 1px solid #ccc;
+    background-color: white;
+    margin-top: 20px;
 }
 
-* {
-font-family: sans-serif;
-}
+

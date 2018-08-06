@@ -4,8 +4,7 @@ export const dynamic = {
         value: null,
         type: 'text',
         validation: {
-            required: true,
-            minLength: 5
+            required: true
         }
     },
     surname: {
@@ -67,20 +66,12 @@ export const dynamic = {
                 key: 'hobby',
                 label: 'Hobby',
                 value: null,
-                type: 'text',
-                validation: {
-                    required: true,
-                    minLength: 5
-                }    
+                type: 'text'
             },{
                 key: 'description',
                 label: 'Description',
                 value: null,
-                type: 'text',
-                validation: {
-                    required: true,
-                    minLength: 5
-                }    
+                type: 'text'
             }
         ]
     }
