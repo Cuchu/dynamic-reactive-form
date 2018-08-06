@@ -80,67 +80,9 @@
       
       <div *ngIf="!prop.group">
 
+      <form-control [element]="prop" [form]="form" [formGroup]="form"></form-control>
       
-      <label [attr.for]="prop">{{prop.label}}</label>
-
-      <div [ngSwitch]="prop.type">
-        
-        <input *ngSwitchCase="'text'" 
-          [formControlName]="prop.key"
-          [id]="prop.key" [type]="prop.type"
-          class="form-control">
-        
-        <input *ngSwitchCase="'email'" 
-          [formControlName]="prop.key"
-          [id]="prop.key" [type]="prop.type"
-          class="form-control">
-        
-        <input *ngSwitchCase="'number'" 
-          [formControlName]="prop.key"
-          [id]="prop.key" [type]="prop.type"
-          class="form-control">
-        
-        <div *ngSwitchCase="'radio'" class="form-check-inline">
-          <label *ngFor="let option of prop.options" class="form-check-label">
-            <input
-              class="form-check-input"
-              type="radio"
-              [name]="prop.key"
-              [formControlName]="prop.key"
-              [value]="option.value"> {{option.label}}
-          </label>
-        </div>
-
-        <div *ngSwitchCase="'select'">
-          <select [formControlName]="prop.key" class="form-control">
-            <option *ngFor="let option of prop.options" [value]="option.value">
-              {{ option.label }}
-            </option>
-          </select>
-        </div>
       </div>
-
-      <div class="error" *ngIf="form.get(prop.key).invalid && (form.get(prop.key).dirty || form.get(prop.key).touched)">
-          <div *ngIf="form.get(prop.key).errors.required">
-            <small class="text-muted">{{ prop.label }} is required</small>
-          </div>
-          <div *ngIf="form.get(prop.key).errors.email">
-            <small class="text-muted">{{ prop.label }} required a email format</small>
-          </div>
-          <div *ngIf="form.get(prop.key).errors.min">
-            <small class="text-muted">{{ prop.label }} required as min value {{ prop.validation.min }}</small>
-          </div>
-          <div *ngIf="form.get(prop.key).errors.max">
-            <small class="text-muted">{{ prop.label }} required as max value {{ prop.validation.max }}</small>
-          </div>
-          <div *ngIf="form.get(prop.key).errors.minlength">
-            <small class="text-muted">{{ prop.label }} required {{ prop.validation.minLength }} or more characters</small>
-          </div>
-          <div *ngIf="form.get(prop.key).errors.maxlength">
-            <small class="text-muted">{{ prop.label }} required no more {{ prop.validation.maxLength }} characters</small>
-          </div>
-      </div>
-    </div>
     </div>
     <p>
       <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Save</button>

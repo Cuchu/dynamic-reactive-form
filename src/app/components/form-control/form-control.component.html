@@ -1,0 +1,25 @@
+<div [formGroup]="formGroup">
+    <label [attr.for]="element">{{element.label}}</label>
+
+    <input *ngIf="element.type == 'text'" [formControlName]="element.key" [id]="element.key" type="text" class="form-control" />
+
+    <input *ngIf="element.type == 'number'" [formControlName]="element.key" [id]="element.key" type="number" class="form-control" />
+
+    <input *ngIf="element.type == 'email'" [formControlName]="element.key" [id]="element.key" type="email" class="form-control" />
+
+    <input *ngIf="element.type == 'password'" [formControlName]="element.key" [id]="element.key" type="password" class="form-control" />
+
+    <div *ngIf="element.type == 'radio'" class="form-check-inline">
+        <label *ngFor="let option of element.options" class="form-check-label">
+            <input class="form-check-input" type="radio" [name]="element.key" [formControlName]="element.key" [value]="option.value">{{option.label}}
+        </label>
+    </div>
+
+    <div *ngIf="element.type == 'select'">
+        <select [formControlName]="element.key" class="form-control">
+            <option *ngFor="let option of element.options" [value]="option.value">{{ option.label }}</option>
+        </select>
+    </div>
+
+    <form-control-error [element]="element" [formElement]="form.get(element.key)"></form-control-error>
+</div>
