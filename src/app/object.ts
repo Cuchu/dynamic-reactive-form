@@ -1,4 +1,4 @@
-export const dynamic = {
+export const object = {
     name: {
         label: 'Name',
         value: null,

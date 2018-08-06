@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { FormControlComponent } from './components/form-control/form-control.component';
 import { FormControlErrorComponent } from './components/form-control-error/form-control-error.component';
 import { FormGroupComponent } from './components/form-group/form-group.component';
+import { FormBuilderService } from './services/form-builder.service';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,7 @@ import { FormGroupComponent } from './components/form-group/form-group.component
   imports: [
     BrowserModule, ReactiveFormsModule
   ],
-  providers: [],
+  providers: [FormBuilderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
