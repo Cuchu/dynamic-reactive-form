@@ -1,0 +1,20 @@
+<div class="error" *ngIf="formElement.invalid && (formElement.dirty || formElement.touched)">
+    <div *ngIf="formElement.errors.required">
+        <small class="text-muted">{{ element.label }} is required</small>
+    </div>
+    <div *ngIf="formElement.errors.email">
+        <small class="text-muted">{{ element.label }} required a email format</small>
+    </div>
+    <div *ngIf="formElement.errors.min">
+        <small class="text-muted">{{ element.label }} required as min value {{ element.validation.min }}</small>
+    </div>
+    <div *ngIf="formElement.errors.max">
+        <small class="text-muted">{{ element.label }} required as max value {{ element.validation.max }}</small>
+    </div>
+    <div *ngIf="formElement.errors.minlength">
+        <small class="text-muted">{{ element.label }} required {{ element.validation.minLength }} or more characters</small>
+    </div>
+    <div *ngIf="formElement.errors.maxlength">
+        <small class="text-muted">{{ element.label }} required no more {{ element.validation.maxLength }} characters</small>
+    </div>
+</div>
