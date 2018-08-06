@@ -34,6 +34,15 @@ export const dynamic = {
             required: true
         }
     },
+    role: {
+        label: 'Role',
+        value: 'USER',
+        type: 'radio',
+        options: [
+            { label: "User", value: 'USER'},
+            { label: "Admin", value: 'ADMIN'}
+        ]
+    },
     gender: {
         label: 'Gender',
         value: 'M',
@@ -41,9 +50,9 @@ export const dynamic = {
         options: [
             { label: "Male", value: 'M'},
             { label: "Female", value: 'F'},
-            { label: "Indefined", value: 'I'}
+            { label: "Undefined", value: 'U'}
         ]
-    }, 
+    },
     city: {
         label: 'City',
         value: '2000',

@@ -14,9 +14,5 @@ export class FormGroupComponent implements OnInit{
 
     constructor() {}
     
-    ngOnInit() {
-        console.log("IN form-control");
-        console.log(this.element);
-        console.log(this.form);
-    }
+    ngOnInit() {}
 }

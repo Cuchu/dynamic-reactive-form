@@ -26,8 +26,6 @@ export class AppComponent implements OnInit{
         return Object.assign({}, { key: prop} , this.dataObject[prop]);
     });
 
-    console.log(this.objectProps);
-
     // setup the form
     const formGroup = {};
 
@@ -70,7 +68,6 @@ export class AppComponent implements OnInit{
       }
     }
 
-    console.log(formValidators);
     return formValidators;
   }
 
