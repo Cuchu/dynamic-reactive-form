@@ -1,96 +1,40 @@
-<!--The content below is only a placeholder and can be replaced.-->
-
-<div class="container">
-  <div style="text-align:center">
-    <h1>
-      {{ title }}
-    </h1>
-  </div>
-  <form novalidate (ngSubmit)="onSubmit(form.value)" [formGroup]="form">
-    
-    <div *ngFor="let prop of objectProps" class="form-group" >
-      
-      <div *ngIf="prop.group" [formGroupName]="prop.key" novalidate>
-        
-        <div *ngFor="let subProp of prop.elements" class="form-group">
-          <!-- {{subProp | json}} -->
-          
-          <label [attr.for]="subProp">{{subProp.label}}</label>
-
-          <div [ngSwitch]="subProp.type">
-              
-              <input *ngSwitchCase="'text'" 
-              [formControlName]="subProp.key"
-              [id]="subProp.key" [type]="subProp.type"
-              class="form-control">
-
-              <input *ngSwitchCase="'email'" 
-                  [formControlName]="subProp.key"
-                  [id]="subProp.key" [type]="subProp.type"
-                  class="form-control">
-                
-                <input *ngSwitchCase="'number'" 
-                  [formControlName]="subProp.key"
-                  [id]="subProp.key" [type]="subProp.type"
-                  class="form-control">
-                
-                <div *ngSwitchCase="'radio'" class="form-check-inline">
-                  <label *ngFor="let option of subProp.options" class="form-check-label">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      [name]="subProp.key"
-                      [formControlName]="subProp.key"
-                      [value]="option.value"> {{option.label}}
-                  </label>
-                </div>
-        
-                <div *ngSwitchCase="'select'">
-                  <select [formControlName]="subProp.key" class="form-control">
-                    <option *ngFor="let option of subProp.options" [value]="option.value">
-                      {{ option.label }}
-                    </option>
-                  </select>
-                </div>
-              </div>
-        
-              <div class="error" *ngIf="form.get(prop.key).get(subProp.key).invalid && (form.get(prop.key).get(subProp.key).dirty || form.get(prop.key).get(subProp.key).touched)">
-                  <div *ngIf="form.get(prop.key).get(subProp.key).errors.required">
-                    <small class="text-muted">{{ subProp.label }} is required</small>
-                  </div>
-                  <div *ngIf="form.get(prop.key).get(subProp.key).errors.email">
-                    <small class="text-muted">{{ subProp.label }} required a email format</small>
-                  </div>
-                  <div *ngIf="form.get(prop.key).get(subProp.key).errors.min">
-                    <small class="text-muted">{{ subProp.label }} required as min value {{ subProp.validation.min }}</small>
-                  </div>
-                  <div *ngIf="form.get(prop.key).get(subProp.key).errors.max">
-                    <small class="text-muted">{{ subProp.label }} required as max value {{ subProp.validation.max }}</small>
-                  </div>
-                  <div *ngIf="form.get(prop.key).get(subProp.key).errors.minlength">
-                    <small class="text-muted">{{ subProp.label }} required {{ subProp.validation.minLength }} or more characters</small>
-                  </div>
-                  <div *ngIf="form.get(prop.key).get(subProp.key).errors.maxlength">
-                    <small class="text-muted">{{ subProp.label }} required no more {{ subProp.validation.maxLength }} characters</small>
-                  </div>
-              </div>
-              
-          </div>
-      </div>
-      
-      <div *ngIf="!prop.group">
-
-      <form-control [element]="prop" [form]="form" [formGroup]="form"></form-control>
-      
-      </div>
+<div class="container clearfix" >
+  <div class="form">
+    <div style="text-align:center">
+      <h1>{{ title }}</h1>
     </div>
-    <p>
-      <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Save</button>
-    </p>
-  </form>
+    <form novalidate (ngSubmit)="onSubmit(form.value)" [formGroup]="form">
+
+      <div *ngFor="let prop of objectProps" class="form-group" >
+
+        <!-- Form GROUP -->
+        <div *ngIf="prop.group" novalidate>
+          <div *ngFor="let subProp of prop.elements" class="form-group">
+            <form-group [element]="subProp" [form]="form" [formGroupName]="prop.key"></form-group>
+            <form-control-error [element]="subProp" [formElement]="form.get(prop.key).get(subProp.key)"></form-control-error>
+          </div>
+        </div>
+
+        <!-- Form CONTROL -->
+        <div *ngIf="!prop.group">
+          <form-control [element]="prop" [form]="form" [formGroup]="form"></form-control>
+          <form-control-error [element]="prop" [formElement]="form.get(prop.key)"></form-control-error>
+        </div>
+      </div>
+
+      <p>
+        <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Save</button>
+      </p>
+    
+    </form>
+  </div>
   <hr />
-  <strong>Form Value</strong>
-  <pre>{{ form.value | json }}</pre>
-  <strong>Form is valid:</strong> {{form.valid}}
+  <div class="form-result">
+      <strong>Form Value</strong>
+      <pre>{{ form.value | json }}</pre>
+      <strong>Form is valid:</strong> {{form.valid}}
+  </div>
+
 </div>
+
 

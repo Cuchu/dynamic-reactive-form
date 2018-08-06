@@ -2,14 +2,14 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'form-control',
-  templateUrl: './form-control.component.html'
+  selector: 'form-group',
+  templateUrl: './form-group.component.html'
 })
 
-export class FormControlComponent implements OnInit{
+export class FormGroupComponent implements OnInit{
 
     @Input('element') element: any;
-    @Input('formGroup') formGroup: FormGroup;
+    @Input('formGroupName') formGroupName: string;
     @Input('form') form: FormGroup;
 
     constructor() {}

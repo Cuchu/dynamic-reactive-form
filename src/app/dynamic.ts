@@ -66,7 +66,11 @@ export const dynamic = {
                 key: 'hobby',
                 label: 'Hobby',
                 value: null,
-                type: 'text'
+                type: 'text',
+                validation: {
+                    required: true,
+                    minLength: 3
+                }
             },{
                 key: 'description',
                 label: 'Description',
