@@ -8,12 +8,20 @@ import { FormControlErrorComponent } from './components/form-control-error/form-
 import { FormGroupComponent } from './components/form-group/form-group.component';
 import { FormBuilderService } from './services/form-builder.service';
 
+import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatAutocompleteModule, MatInputModule,MatFormFieldModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     AppComponent, FormControlComponent, FormControlErrorComponent, FormGroupComponent
   ],
   imports: [
-    BrowserModule, ReactiveFormsModule
+    BrowserModule, ReactiveFormsModule,
+    MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatAutocompleteModule, MatInputModule,MatFormFieldModule,
+    BrowserAnimationsModule
+  ],
+  exports: [
+    MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatAutocompleteModule, MatInputModule,MatFormFieldModule
   ],
   providers: [FormBuilderService],
   bootstrap: [AppComponent]
