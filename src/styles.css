@@ -12,10 +12,15 @@ body {
     font-family: sans-serif;
 }
 
-.form-check-label { 
+.mat-radio-label-content, .form-check-label { 
     margin-right: 20px; 
 }
 
+
 .form-check-inline {
+    width: 100%;
+}
+
+.example-full-width {
     width: 100%;
 }

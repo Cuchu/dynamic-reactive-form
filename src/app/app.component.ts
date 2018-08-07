@@ -8,7 +8,7 @@ import { FormBuilderService } from './services/form-builder.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  templateUrl: './app-material.component.html',
   styleUrls: ['./app.component.css']
 })
 
