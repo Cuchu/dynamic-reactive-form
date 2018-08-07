@@ -15,9 +15,5 @@ export class FormControlMaterialComponent implements OnInit{
 
     constructor() {}
     
-    ngOnInit() {
-      console.log(this.element);
-      console.log(this.formElement);
-      console.log(this.form);
-    }
+    ngOnInit() {}
 }

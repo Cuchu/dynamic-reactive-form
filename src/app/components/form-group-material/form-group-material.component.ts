@@ -16,8 +16,5 @@ export class FormGroupMaterialComponent implements OnInit{
 
     constructor() {}
     
-    ngOnInit() {
-      console.log(this.formElement);
-      console.log(this.element);
-    }
+    ngOnInit() {}
 }
