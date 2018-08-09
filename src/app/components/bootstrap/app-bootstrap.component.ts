@@ -13,7 +13,7 @@ import { FormBuilderService } from '../../services/form-builder.service';
 })
 
 export class AppBootstrapComponent implements OnInit{
-  title = 'dynamic-form';
+  title = 'dynamic-form-bootstrap';
   dataObject = object;
   form: FormGroup;
   objectProps:Array<any>;
