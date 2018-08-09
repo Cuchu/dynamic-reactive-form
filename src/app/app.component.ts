@@ -3,35 +3,20 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { object } from './object';
-import { FormBuilderService } from './services/form-builder.service';
+/* import { object } from './object';
+import { FormBuilderService } from './services/form-builder.service'; */
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app-material.component.html',
+  templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 
 export class AppComponent implements OnInit{
-  title = 'dynamic-form';
-  dataObject = object;
-  form: FormGroup;
-  objectProps:Array<any>;
   
-  constructor(private _formBuilderService: FormBuilderService) {}
+  constructor() {}
 
   ngOnInit() {
     console.log("ngOnInit");
-    
-    // remap the API to be suitable for iterating over it
-    this.objectProps = Object.keys(this.dataObject).map(prop => {
-        return Object.assign({}, { key: prop} , this.dataObject[prop]);
-    });
-    
-    this.form = this._formBuilderService.createForm(this.dataObject);
-  }
-
-  onSubmit(form) {
-    console.log(form);
   }
 }

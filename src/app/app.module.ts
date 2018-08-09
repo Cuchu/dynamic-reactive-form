@@ -15,21 +15,25 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormGroupMaterialComponent } from './components/form-group-material/form-group-material.component';
+import { RouterModule } from '@angular/router';
+import { routing, appRoutingProviders } from './app.routing';
+import { AppBootstrapComponent } from './components/bootstrap/app-bootstrap.component';
+import { AppMaterialComponent } from './components/material/app-material.component';
 
 @NgModule({
   declarations: [
-    AppComponent, FormControlComponent, FormControlErrorComponent, FormGroupComponent, FormControlMaterialComponent, FormGroupMaterialComponent
+    AppComponent, FormControlComponent, FormControlErrorComponent, FormGroupComponent, FormControlMaterialComponent, FormGroupMaterialComponent, AppBootstrapComponent, AppMaterialComponent
   ],
   imports: [
-    BrowserModule, ReactiveFormsModule,
+    BrowserModule, ReactiveFormsModule, RouterModule,
     MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatAutocompleteModule, MatInputModule,MatFormFieldModule,
     MatRadioModule, MatSelectModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule, routing
   ],
   exports: [
     MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatAutocompleteModule, MatInputModule,MatFormFieldModule
   ],
-  providers: [FormBuilderService],
+  providers: [FormBuilderService,appRoutingProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
