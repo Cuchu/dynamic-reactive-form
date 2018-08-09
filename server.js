@@ -10,7 +10,7 @@ app.use(express.static(__dirname + '/dist/dynamic-form'));
  
 app.get('*', function(req,res) {
   // Replace the '/dist/<to_your_project_name>/index.html'
-  res.sendFile(path.join(__dirname + '/dist/dynamic-form/index.html'));
+  res.sendFile(path.join(__dirname + '/dist/dynamic-form/src/index.html'));
 });
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 8080);
