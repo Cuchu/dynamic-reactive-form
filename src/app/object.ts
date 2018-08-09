@@ -36,7 +36,7 @@ export const object = {
     },
     role: {
         label: 'Role',
-        value: 'USER',
+        value: 'ADMIN',
         type: 'radio',
         options: [
             { label: "User", value: 'USER'},

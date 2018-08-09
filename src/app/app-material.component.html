@@ -1,0 +1,40 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<div class="container clearfix" >
+  <div class="form">
+    <div style="text-align:center">
+      <h1>{{ title }}</h1>
+    </div>
+    <form novalidate (ngSubmit)="onSubmit(form.value)" [formGroup]="form">
+
+      <div *ngFor="let prop of objectProps" class="form-group" >
+
+        <!-- Form GROUP -->
+        <div *ngIf="prop.group" novalidate>
+          <div *ngFor="let subProp of prop.elements" class="form-group">
+            <form-group-material [element]="subProp" [form]="form" [formGroupName]="prop.key" [formElement]="form.get(prop.key).get(subProp.key)"></form-group-material>
+          </div>
+        </div>
+
+        <!-- Form CONTROL -->
+        <div *ngIf="!prop.group">
+          <form-control-material [element]="prop" [form]="form" [formGroup]="form" [formElement]="form.get(prop.key)"></form-control-material>
+        </div>
+      </div>
+
+      <p>
+        <button mat-raised-button color="primary" [disabled]="!form.valid">Save</button>
+      </p>
+    
+    </form>
+  </div>
+  <hr />
+  <div class="form-result">
+      <strong>Form Value</strong>
+      <pre>{{ form.value | json }}</pre>
+      <strong>Form is valid:</strong> {{form.valid}}
+  </div>
+
+</div>
+
+

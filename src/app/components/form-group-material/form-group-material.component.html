@@ -1,0 +1,76 @@
+<div [formGroup]="form">
+    <div [formGroupName]="formGroupName" >
+
+        <mat-form-field *ngIf="element.type == 'text'" class="example-full-width">
+            <input matInput placeholder="{{element.label}}" [formControlName]="element.key" [id]="element.key" type="text">
+            <button mat-button *ngIf="formElement.value" matSuffix mat-icon-button aria-label="Clear" (click)="formElement.setValue('')">
+                <mat-icon>close</mat-icon>
+            </button>
+            <mat-error *ngIf="formElement.errors && formElement.errors.required">{{ element.label }} is required</mat-error>
+            <mat-error *ngIf="formElement.errors && formElement.errors.email">{{ element.label }} required a email format</mat-error>
+            <mat-error *ngIf="formElement.errors && formElement.errors.min">{{ element.label }} required as min value {{ element.validation.min }}</mat-error>
+            <mat-error *ngIf="formElement.errors && formElement.errors.max">{{ element.label }} required as max value {{ element.validation.max }}</mat-error>
+            <mat-error *ngIf="formElement.errors && formElement.errors.minlength">{{ element.label }} required {{ element.validation.minLength }} or more characters</mat-error>
+            <mat-error *ngIf="formElement.errors && formElement.errors.maxlength">{{ element.label }} required no more {{ element.validation.maxLength }} characters</mat-error>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="element.type == 'number'" class="example-full-width">
+            <input matInput placeholder="{{element.label}}" [formControlName]="element.key" [id]="element.key" type="number">
+            <button mat-button *ngIf="formElement.value" matSuffix mat-icon-button aria-label="Clear" (click)="formElement.setValue('')">
+                <mat-icon>close</mat-icon>
+            </button>
+            <mat-error *ngIf="formElement.errors && formElement.errors.required">{{ element.label }} is required</mat-error>
+            <mat-error *ngIf="formElement.errors && formElement.errors.email">{{ element.label }} required a email format</mat-error>
+            <mat-error *ngIf="formElement.errors && formElement.errors.min">{{ element.label }} required as min value {{ element.validation.min }}</mat-error>
+            <mat-error *ngIf="formElement.errors && formElement.errors.max">{{ element.label }} required as max value {{ element.validation.max }}</mat-error>
+            <mat-error *ngIf="formElement.errors && formElement.errors.minlength">{{ element.label }} required {{ element.validation.minLength }} or more characters</mat-error>
+            <mat-error *ngIf="formElement.errors && formElement.errors.maxlength">{{ element.label }} required no more {{ element.validation.maxLength }} characters</mat-error>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="element.type == 'email'" class="example-full-width">
+            <input matInput placeholder="{{element.label}}" [formControlName]="element.key" [id]="element.key" type="email">
+            <button mat-button *ngIf="formElement.value" matSuffix mat-icon-button aria-label="Clear" (click)="formElement.setValue('')">
+                <mat-icon>close</mat-icon>
+            </button>
+            <mat-error *ngIf="formElement.errors && formElement.errors.required">{{ element.label }} is required</mat-error>
+            <mat-error *ngIf="formElement.errors && formElement.errors.email">{{ element.label }} required a email format</mat-error>
+            <mat-error *ngIf="formElement.errors && formElement.errors.min">{{ element.label }} required as min value {{ element.validation.min }}</mat-error>
+            <mat-error *ngIf="formElement.errors && formElement.errors.max">{{ element.label }} required as max value {{ element.validation.max }}</mat-error>
+            <mat-error *ngIf="formElement.errors && formElement.errors.minlength">{{ element.label }} required {{ element.validation.minLength }} or more characters</mat-error>
+            <mat-error *ngIf="formElement.errors && formElement.errors.maxlength">{{ element.label }} required no more {{ element.validation.maxLength }} characters</mat-error>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="element.type == 'password'" class="example-full-width">
+            <input matInput placeholder="{{element.label}}" [formControlName]="element.key" [id]="element.key" type="password">
+            <button mat-button *ngIf="formElement.value" matSuffix mat-icon-button aria-label="Clear" (click)="formElement.setValue('')">
+                <mat-icon>close</mat-icon>
+            </button>
+            <mat-error *ngIf="formElement.errors && formElement.errors.required">{{ element.label }} is required</mat-error>
+            <mat-error *ngIf="formElement.errors && formElement.errors.email">{{ element.label }} required a email format</mat-error>
+            <mat-error *ngIf="formElement.errors && formElement.errors.min">{{ element.label }} required as min value {{ element.validation.min }}</mat-error>
+            <mat-error *ngIf="formElement.errors && formElement.errors.max">{{ element.label }} required as max value {{ element.validation.max }}</mat-error>
+            <mat-error *ngIf="formElement.errors && formElement.errors.minlength">{{ element.label }} required {{ element.validation.minLength }} or more characters</mat-error>
+            <mat-error *ngIf="formElement.errors && formElement.errors.maxlength">{{ element.label }} required no more {{ element.validation.maxLength }} characters</mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field *ngIf="element.type == 'select'" class="example-full-width has-label">
+            <mat-select [placeholder]="element.label" [formControlName]="element.key">
+                <mat-option *ngFor="let option of element.options" [value]="option.value">
+                  {{ option.label }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="formElement.errors && formElement.errors.required">{{ element.label }} is required</mat-error>
+        </mat-form-field>
+
+        <div *ngIf="element.type == 'radio'">
+            <div style="width:100%">
+                <label [attr.for]="element">{{element.label}}</label>
+            </div>
+            <mat-radio-group  class="example-full-width" [formControlName]="element.key">
+                <mat-radio-button *ngFor="let option of element.options" [value]="option.value">{{option.label}}</mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+    </div>
+</div>

@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "~bootstrap/dist/css/bootstrap.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 body {
     background-color: #93ada8;
@@ -11,10 +12,15 @@ body {
     font-family: sans-serif;
 }
 
-.form-check-label { 
+.mat-radio-label-content, .form-check-label { 
     margin-right: 20px; 
 }
 
+
 .form-check-inline {
+    width: 100%;
+}
+
+.example-full-width {
     width: 100%;
 }
