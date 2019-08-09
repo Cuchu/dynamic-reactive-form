@@ -19,10 +19,11 @@ import { RouterModule } from '@angular/router';
 import { routing, appRoutingProviders } from './app.routing';
 import { AppBootstrapComponent } from './components/bootstrap/app-bootstrap.component';
 import { AppMaterialComponent } from './components/material/app-material.component';
+import { AppRenderComponent } from './components/render/app-render.component';
 
 @NgModule({
   declarations: [
-    AppComponent, FormControlComponent, FormControlErrorComponent, FormGroupComponent, FormControlMaterialComponent, FormGroupMaterialComponent, AppBootstrapComponent, AppMaterialComponent
+    AppComponent, FormControlComponent, FormControlErrorComponent, FormGroupComponent, FormControlMaterialComponent, FormGroupMaterialComponent, AppBootstrapComponent, AppMaterialComponent, AppRenderComponent
   ],
   imports: [
     BrowserModule, ReactiveFormsModule, RouterModule,

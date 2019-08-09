@@ -1,0 +1,26 @@
+<div class="container clearfix" >
+
+  <header *ngIf="dataObject.header" class="clearfix">
+    <div class="header_col_1" *ngIf="dataObject.header.col1" [innerHTML]="dataObject.header.col1"></div>
+    <div class="header_col_2" *ngIf="dataObject.header.col2" [innerHTML]="dataObject.header.col2"></div> 
+  </header>
+  <div class="body clearfix">
+    <div *ngFor="let block of dataObject.body" class="clearfix">
+      <div *ngIf="block.title" class="block-title" [innerHTML]="block.title"></div>
+
+      <div *ngFor="let content of block.content" class="clearfix">
+        <div *ngIf="content.line_header" [innerHTML]="content.line_header" class="block-content-line_header clearfix"></div>
+        <div *ngIf="content.line" [innerHTML]="content.line" class="block-content-line clearfix"></div>
+        <div *ngIf="content.col1" class="clearfix block-content-columns">
+            <div class="header_col_1" *ngIf="content.col1" [innerHTML]="content.col1"></div>
+            <div class="header_col_2" *ngIf="content.col2" [innerHTML]="content.col2"></div>
+        </div>
+      </div>  
+    </div>
+  </div>
+  <footer *ngIf="dataObject.footer" class="clearfix">
+    <div class="header_col_1" *ngIf="dataObject.footer.col1" [innerHTML]="dataObject.footer.col1"></div>
+    <div class="header_col_2" *ngIf="dataObject.footer.col2" [innerHTML]="dataObject.footer.col2"></div> 
+  </footer>
+
+</div>
