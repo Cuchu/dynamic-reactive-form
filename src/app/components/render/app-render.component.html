@@ -4,6 +4,7 @@
     <div class="header_col_1" *ngIf="dataObject.header.col1" [innerHTML]="dataObject.header.col1"></div>
     <div class="header_col_2" *ngIf="dataObject.header.col2" [innerHTML]="dataObject.header.col2"></div> 
   </header>
+  
   <div class="body clearfix">
     <div *ngFor="let block of dataObject.body" class="clearfix">
       <div *ngIf="block.title" class="block-title" [innerHTML]="block.title"></div>
@@ -18,6 +19,7 @@
       </div>  
     </div>
   </div>
+  
   <footer *ngIf="dataObject.footer" class="clearfix">
     <div class="header_col_1" *ngIf="dataObject.footer.col1" [innerHTML]="dataObject.footer.col1"></div>
     <div class="header_col_2" *ngIf="dataObject.footer.col2" [innerHTML]="dataObject.footer.col2"></div> 
